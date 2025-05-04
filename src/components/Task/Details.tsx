@@ -1,6 +1,6 @@
 import { Check, ChevronDown, ChevronUp, Pencil, Trash2, X } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
-import { Task, TaskStatus } from '../../lib/types';
+import { Task } from '../../lib/types';
 import { useDeleteTask, useUpdateTask } from '../../data/task';
 import { toast } from 'sonner';
 import StatusDropdown from './StatusDropdown';
