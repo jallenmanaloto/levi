@@ -1,36 +1,31 @@
 import { useEffect, useRef, useState } from 'react';
 import { CircleChevronRight, Plus, X } from 'lucide-react';
-
 import { toast } from 'sonner';
-import { invoke } from "@tauri-apps/api/core";
 
 import Header from "../components/Header";
 import TaskList from "./TaskList";
+import { useAddTask } from '../data/task';
+import { TaskStatus } from '../lib/types';
 
 export default function Main() {
   const [addTask, setAddTask] = useState(false);
   const [taskTitle, setTaskTitle] = useState('');
-  const [taskStatus, setTaskStatus] = useState('todo');
+  const [taskStatus, setTaskStatus] = useState<TaskStatus>(TaskStatus.TODO);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setTaskTitle(event.target.value);
   };
 
+  const addTaskMutation = useAddTask();
+
   const handleAddTaskSubmit = async () => {
     if (taskTitle.trim()) {
-      try {
-        await invoke('add_task_command', { title: taskTitle, status: taskStatus });
-        setAddTask(false);
-        setTaskTitle('');
-        setTaskStatus('todo');
-
-        toast.success('Successfully add task.');
-      } catch (error) {
-        toast.error('Failed to add a task.');
-      }
+      addTaskMutation.mutate({ title: taskTitle, status: taskStatus });
+      setTaskStatus(TaskStatus.TODO);
+      setTaskTitle('');
+      setAddTask(false);
     } else {
-      // Optionally show a message to the user that the task title cannot be empty
       toast.error('Failed to add task. Title cannot be empty.');
     }
   };
