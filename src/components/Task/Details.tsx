@@ -104,7 +104,7 @@ export default function Details({
             <h3 className="text-xs text-gray-100/40">
               Status:
             </h3>
-            <StatusDropdown task={task} status={status} setStatus={setStatus} />
+            <StatusDropdown task={task} setStatus={setStatus} />
           </div>
         </div>
       </div>

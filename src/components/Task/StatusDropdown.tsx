@@ -1,12 +1,14 @@
 import { Task, TaskStatus } from "../../lib/types"
 import { useUpdateTask } from "../../data/task";
 
-export default function StatusDropdown({ task, status, setStatus }: { task: Task, status: TaskStatus, setStatus: (status: TaskStatus) => void }) {
+export default function StatusDropdown({ task, setStatus }: { task: Task, setStatus: (status: TaskStatus) => void }) {
   const statusLabels: Record<TaskStatus, string> = {
     [TaskStatus.TODO]: "To do",
     [TaskStatus.ONGOING]: "Ongoing",
     [TaskStatus.DONE]: "Done"
   };
+
+  const status = task.status;
 
   const updateTask = useUpdateTask();
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
