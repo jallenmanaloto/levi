@@ -33,6 +33,8 @@ export default function Details({
     }
   }, [edit]);
 
+  const dateObj = new Date(task.created_at);
+  const dateReadable = dateObj.toLocaleString();
   return (
     <div className="h-14 w-5/6 flex-1 flex justify-between items-start background-pill rounded-r-full">
       <div className="h-full w-5/6 px-3 whitespace-nowrap">
@@ -55,7 +57,7 @@ export default function Details({
           )}
         <div className="flex space-x-4">
           <h3 className="text-xs text-gray-100/40">
-            Created at: {task.createdAt}
+            Created at: {dateReadable}
           </h3>
           <div
             onClick={handleExpandNotes}
