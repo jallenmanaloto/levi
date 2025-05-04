@@ -1,4 +1,4 @@
-import TaskFilter from "./TaskFilter";
+import TaskFilter from "./TaskFilter.tsx"
 import Voice from "./Voice";
 
 export default function Header() {
