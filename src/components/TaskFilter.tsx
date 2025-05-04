@@ -11,11 +11,11 @@ export default function TaskFilter() {
         return (
           <div
             onClick={() => setActiveCategory(category)}
-            className={`w-28 h-3/4 ml-4 flex justify-center items-center ${isActive ? 'bg-neutral-100/5' : 'bg-stone-800/40'} rounded-full cursor-pointer`}
+            className={`w-28 h-7 ml-4 flex justify-center items-center ${isActive ? 'bg-neutral-200/10' : 'bg-stone-800/40'} rounded-full cursor-pointer`}
             key={key}
           >
             <h2 className="text-xs text-gray-100 px-2">
-              {category}: (100)
+              {category}: <span className="text-green-200">(100)</span>
             </h2>
           </div>
         )
