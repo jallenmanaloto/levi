@@ -4,7 +4,7 @@ export type Note = {
 };
 
 export type Task = {
-  name: string;
+  title: string;
   createdAt: string
   notes: Note[];
   status: TaskStatus;
@@ -16,7 +16,7 @@ export type TaskStyle = {
 };
 
 export enum TaskStatus {
-  TODO = 'To do',
-  ONGOING = 'Ongoing',
-  DONE = 'Done'
+  TODO = 'todo',
+  ONGOING = 'ongoing',
+  DONE = 'done'
 };
