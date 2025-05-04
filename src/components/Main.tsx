@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { CircleChevronRight, Plus, X } from 'lucide-react';
 
 import { toast } from 'sonner';
@@ -11,6 +11,7 @@ export default function Main() {
   const [addTask, setAddTask] = useState(false);
   const [taskTitle, setTaskTitle] = useState('');
   const [taskStatus, setTaskStatus] = useState('todo');
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setTaskTitle(event.target.value);
@@ -34,6 +35,12 @@ export default function Main() {
     }
   };
 
+  useEffect(() => {
+    if (addTask && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [addTask]);
+
   return (
     <div className="container flex flex-col h-screen p-2 background-main-dark">
       <Header />
@@ -53,6 +60,7 @@ export default function Main() {
               />
             </div>
             <input
+              ref={inputRef}
               type='text'
               placeholder='Task name'
               className="text-sm w-5/6 text-gray-100/30 flex-1 outline-none"
@@ -61,6 +69,10 @@ export default function Main() {
               onKeyDown={(event) => {
                 if (event.key === 'Enter') {
                   handleAddTaskSubmit();
+                }
+
+                if (event.key === 'Escape') {
+                  setAddTask(false);
                 }
               }}
             />
