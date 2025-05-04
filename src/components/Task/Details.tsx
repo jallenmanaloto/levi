@@ -1,21 +1,61 @@
-import { ChevronDown, ChevronUp, Pencil, Trash2 } from 'lucide-react';
-import { useState } from 'react';
+import { Check, ChevronDown, ChevronUp, Pencil, Trash2 } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { Task } from '../../lib/types';
 
-export default function Details({ visible, setVisible }: { visible: boolean, setVisible: (visible: boolean) => void }) {
+export default function Details({
+  visible,
+  setVisible,
+  task,
+}: {
+  visible: boolean,
+  setVisible: (visible: boolean) => void,
+  task: Task
+}) {
+  const [edit, setEdit] = useState(false);
   const [expand, setExpand] = useState(false);
+  const [value, setValue] = useState(task.name);
+  const [inputValue, setInputValue] = useState(task.name);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const handleSave = () => {
+    setValue(inputValue);
+    setEdit(false);
+  }
+
   const handleExpandNotes = () => {
     setExpand(!expand);
     setVisible(!visible);
   }
+
+  useEffect(() => {
+    if (edit && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [edit]);
+
   return (
     <div className="h-14 w-5/6 flex-1 flex justify-between items-start background-pill rounded-r-full">
       <div className="h-full w-5/6 px-3 whitespace-nowrap">
-        <h2 className="text-base text-gray-100/80 pt-2 truncate">
-          Task here
-        </h2>
+        {edit
+          ? (
+            <input
+              ref={inputRef}
+              type='text'
+              className="outline-none text-base text-gray-100/40 bg-stone-800/40 w-full pt-2 mt-1"
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+            />
+          )
+          : (
+            <>
+              <h2 className="text-base text-gray-100/80 pt-2 truncate">
+                {value}
+              </h2>
+            </>
+          )}
         <div className="flex space-x-4">
           <h3 className="text-xs text-gray-100/40">
-            Created at: Jan-12-2025
+            Created at: {task.createdAt}
           </h3>
           <div
             onClick={handleExpandNotes}
@@ -32,7 +72,18 @@ export default function Details({ visible, setVisible }: { visible: boolean, set
         </div>
       </div>
       <div className="h-full w-20 flex items-center space-x-4">
-        <Pencil className="text-gray-100/40 cursor-pointer" size={18} />
+        {edit ? (
+          <Check
+            onClick={handleSave}
+            className="text-gray-100/40 cursor-pointer" size={18}
+          />
+        ) : (
+
+          <Pencil
+            onClick={() => setEdit(true)}
+            className="text-gray-100/40 cursor-pointer" size={18}
+          />
+        )}
         <Trash2 className="text-gray-100/40 cursor-pointer" size={18} />
       </div>
     </div>
