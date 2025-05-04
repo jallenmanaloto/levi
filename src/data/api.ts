@@ -1,7 +1,11 @@
 import { invoke } from "@tauri-apps/api/core";
-import { Task } from "../lib/types";
+import { Task, TaskStatus } from "../lib/types";
 
 export const fetchTasks = async (): Promise<Task[]> => {
   return await invoke<Task[]>('get_tasks_command');
+}
+
+export const addTask = async ({ title, status }: { title: string, status: TaskStatus }): Promise<void> => {
+  return await invoke('add_task_command', { title, status });
 }
 
