@@ -3,9 +3,12 @@
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 .html {
-  color: rgba(136,143,155,255);
+  /* color: rgba(89,96,117,255); */
 }
 
+.base-text {
+  color: rgba(89,96,117,255);
+}
 .background-main-dark {
   background-color: rgba(37,43,53,255);
 }
@@ -20,4 +23,11 @@
 
 .background-individual-pill {
  background-color: rgba(53,59,68,255);
+}
+
+.container {
+  width: 100%;
+  max-width: 1280px; /* or similar depending on breakpoints */
+  margin-left: auto;
+  margin-right: auto;
 }
