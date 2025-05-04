@@ -3,15 +3,15 @@ import { TaskStatus, TaskStyle } from '../../lib/types.ts';
 
 export default function Status({ status }: { status: TaskStatus }) {
   const style: Record<TaskStatus, TaskStyle> = {
-    'To do': {
+    'todo': {
       background: 'background-pill',
       border: 'border-r-indigo-500/15'
     },
-    'Ongoing': {
+    'ongoing': {
       background: 'bg-yellow-200/20',
       border: 'border-r-yellow-400/50'
     },
-    'Done': {
+    'done': {
       background: 'bg-green-500/20',
       border: 'border-r-green-800/80'
     }
