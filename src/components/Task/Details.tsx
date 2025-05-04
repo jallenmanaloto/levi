@@ -1,6 +1,8 @@
 import { Check, ChevronDown, ChevronUp, Pencil, Trash2 } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
-import { Task } from '../../lib/types';
+import { Task, TaskStatus } from '../../lib/types';
+import { useUpdateTask } from '../../data/task';
+import { toast } from 'sonner';
 
 export default function Details({
   visible,
@@ -17,9 +19,19 @@ export default function Details({
   const [inputValue, setInputValue] = useState(task.title);
   const inputRef = useRef<HTMLInputElement>(null);
 
+  const updateTask = useUpdateTask();
   const handleSave = () => {
-    setValue(inputValue);
-    setEdit(false);
+    if (inputValue.trim()) {
+      updateTask.mutate({
+        id: task.id,
+        title: inputValue,
+        status: TaskStatus.DONE
+      });
+      setValue(inputValue);
+      setEdit(false);
+    } else {
+      toast.error("Failed to update task. Title cannot be empty.");
+    }
   }
 
   const handleExpandNotes = () => {
@@ -46,6 +58,16 @@ export default function Details({
               className="outline-none text-base text-gray-100/40 bg-stone-800/40 w-full pt-2 mt-1"
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
+              onKeyDown={(event) => {
+                if (event.key === 'Enter') {
+                  handleSave();
+                }
+
+                if (event.key === 'Escape') {
+                  setEdit(false);
+                  setInputValue(task.title);
+                }
+              }}
             />
           )
           : (
