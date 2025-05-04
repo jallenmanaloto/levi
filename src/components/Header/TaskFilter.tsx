@@ -4,7 +4,7 @@ import { useFilterStore } from "../../lib/store";
 export default function TaskFilter() {
   const categories = ['Tasks', 'Ongoing', 'Done'];
   const { total, ongoingCount, doneCount } = useFilterStore();
-  const [activeCategory, setActiveCategory] = useState<string>('To do');
+  const [activeCategory, setActiveCategory] = useState<string>('Tasks');
 
   return (
     <div className="h-12 flex items-center base-text">
