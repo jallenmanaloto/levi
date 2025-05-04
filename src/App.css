@@ -1,1 +1,23 @@
 @import "tailwindcss";
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+.html {
+  color: rgba(92,129,132,255);
+}
+
+.background-main-dark {
+  background-color: rgba(37,43,53,255);
+}
+
+.background-main {
+   background-color: rgba(216,217,216,255);
+}
+
+.background-pill {
+  background-color: rgba(42,51,59,255);
+}
+
+.background-individual-pill {
+ background-color: rgba(53,59,68,255);
+}
