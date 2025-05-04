@@ -4,6 +4,7 @@ export type Note = {
 };
 
 export type Task = {
+  id: number;
   title: string;
   created_at: string
   notes: Note[];
