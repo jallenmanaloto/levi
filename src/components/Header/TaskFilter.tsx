@@ -1,10 +1,29 @@
-import { useState } from "react";
-import { useFilterStore } from "../../lib/store";
+import { useEffect, useState } from "react";
+import { useFilterStore, useTaskStore } from "../../lib/store";
+import { TaskStatus } from "../../lib/types";
 
 export default function TaskFilter() {
+  const { tasks, setFilteredTasks } = useTaskStore();
   const categories = ['Tasks', 'Ongoing', 'Done'];
   const { total, ongoingCount, doneCount } = useFilterStore();
   const [activeCategory, setActiveCategory] = useState<string>('Tasks');
+
+  // Map category to TaskStatus
+  const categoryToStatus: Record<string, TaskStatus | null> = {
+    Tasks: null,
+    Ongoing: TaskStatus.ONGOING,
+    Done: TaskStatus.DONE,
+  };
+
+  useEffect(() => {
+    if (!tasks) return undefined;
+
+    const status = categoryToStatus[activeCategory];
+    const newFilteredTasks = status
+      ? tasks.filter((task) => task.status === status)
+      : tasks;
+    setFilteredTasks(newFilteredTasks);
+  }, [activeCategory, tasks]);
 
   return (
     <div className="h-12 flex items-center base-text">
