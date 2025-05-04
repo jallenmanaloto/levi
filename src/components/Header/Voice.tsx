@@ -7,12 +7,12 @@ export default function Voice() {
     <>
       {active
         ? <Mic
-          className="text-green-200 cursor-pointer mr-5"
+          className="text-green-200 cursor-pointer"
           size={18}
           onClick={() => setActive(!active)}
         />
         : <MicOff
-          className="text-green-200 cursor-pointer mr-5"
+          className="text-green-200 cursor-pointer"
           size={18}
           onClick={() => setActive(!active)}
         />
