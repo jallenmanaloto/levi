@@ -20,11 +20,9 @@ export default function TaskList() {
   }, []);
   return (
     <>
-      {tasks !== null ? tasks.map((task) => {
+      {tasks !== null ? tasks.map((task, key: number) => {
         return (
-          <>
-            <Task task={task} />
-          </>
+          <Task key={key} task={task} />
         )
       }) : 'no task found'}
     </>
