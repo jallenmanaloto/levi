@@ -5,7 +5,7 @@ export type Note = {
 
 export type Task = {
   title: string;
-  createdAt: string
+  created_at: string
   notes: Note[];
   status: TaskStatus;
 };
