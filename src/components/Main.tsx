@@ -1,7 +1,10 @@
-import { invoke } from "@tauri-apps/api/core";
-import { CircleChevronRight, Plus, X } from 'lucide-react';
-import Header from "../components/Header";
 import { useState } from 'react';
+import { CircleChevronRight, Plus, X } from 'lucide-react';
+
+import { toast } from 'sonner';
+import { invoke } from "@tauri-apps/api/core";
+
+import Header from "../components/Header";
 import TaskList from "./TaskList";
 
 export default function Main() {
@@ -16,19 +19,18 @@ export default function Main() {
   const handleAddTaskSubmit = async () => {
     if (taskTitle.trim()) {
       try {
-        const newTask = await invoke('add_task_command', { title: taskTitle, status: taskStatus });
-        console.log('Task added successfully:', newTask);
-        // Optionally update your task list in the UI here
+        await invoke('add_task_command', { title: taskTitle, status: taskStatus });
         setAddTask(false);
         setTaskTitle('');
-        // You might want to reset the status as well if needed:
         setTaskStatus('todo');
+
+        toast.success('Successfully add task.');
       } catch (error) {
-        console.error('Failed to add task:', error);
-        // Display an error message to the user
+        toast.error('Failed to add a task.');
       }
     } else {
       // Optionally show a message to the user that the task title cannot be empty
+      toast.error('Failed to add task. Title cannot be empty.');
     }
   };
 
