@@ -1,5 +1,5 @@
 import { toast } from "sonner";
-import { addTask, fetchTasks } from "./api.ts";
+import { addTask, fetchTasks, updateTask } from "./api.ts";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 export function useFetchTasks() {
@@ -20,6 +20,21 @@ export function useAddTask() {
     },
     onError: () => {
       toast.error('Failed to add a task.');
+    }
+  });
+}
+
+export function useUpdateTask() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: updateTask,
+    mutationKey: ['updateTask'],
+    onSuccess: () => {
+      toast.success('Successfully update task.');
+      queryClient.invalidateQueries({ queryKey: ['fetchTasks'] });
+    },
+    onError: () => {
+      toast.error('Failed to update a task.');
     }
   });
 }

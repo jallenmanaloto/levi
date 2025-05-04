@@ -9,3 +9,6 @@ export const addTask = async ({ title, status }: { title: string, status: TaskSt
   return await invoke('add_task_command', { title, status });
 }
 
+export const updateTask = async ({ id, title, status }: { id: number, title: string, status: TaskStatus }): Promise<void> => {
+  return await invoke('update_task_command', { id, newTitle: title, newStatus: status });
+}
