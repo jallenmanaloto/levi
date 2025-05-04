@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Task, TaskStatus } from '../../lib/types';
 import { useDeleteTask, useUpdateTask } from '../../data/task';
 import { toast } from 'sonner';
+import StatusDropdown from './StatusDropdown';
 
 export default function Details({
   visible,
@@ -17,6 +18,7 @@ export default function Details({
   const [expand, setExpand] = useState(false);
   const [value, setValue] = useState(task.title);
   const [inputValue, setInputValue] = useState(task.title);
+  const [status, setStatus] = useState(task.status);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const updateTask = useUpdateTask();
@@ -25,7 +27,7 @@ export default function Details({
       updateTask.mutate({
         id: task.id,
         title: inputValue,
-        status: TaskStatus.DONE
+        status
       });
       setValue(inputValue);
       setEdit(false);
@@ -97,6 +99,12 @@ export default function Details({
               ? <ChevronUp className="text-gray-100/40 h-4 w-4" />
               : <ChevronDown className="text-gray-100/40 h-4 w-4" />
             }
+          </div>
+          <div className="flex items-center space-x-2">
+            <h3 className="text-xs text-gray-100/40">
+              Status:
+            </h3>
+            <StatusDropdown task={task} status={status} setStatus={setStatus} />
           </div>
         </div>
       </div>
