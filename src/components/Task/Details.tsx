@@ -1,7 +1,7 @@
 import { Check, ChevronDown, ChevronUp, Pencil, Trash2 } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { Task, TaskStatus } from '../../lib/types';
-import { useUpdateTask } from '../../data/task';
+import { useDeleteTask, useUpdateTask } from '../../data/task';
 import { toast } from 'sonner';
 
 export default function Details({
@@ -32,6 +32,11 @@ export default function Details({
     } else {
       toast.error("Failed to update task. Title cannot be empty.");
     }
+  }
+
+  const deleteTask = useDeleteTask();
+  const handleDelete = () => {
+    deleteTask.mutate({ id: task.id });
   }
 
   const handleExpandNotes = () => {
@@ -108,7 +113,10 @@ export default function Details({
             className="text-gray-100/40 cursor-pointer" size={18}
           />
         )}
-        <Trash2 className="text-gray-100/40 cursor-pointer" size={18} />
+        <Trash2
+          onClick={handleDelete}
+          className="text-gray-100/40 cursor-pointer" size={18}
+        />
       </div>
     </div>
   )
