@@ -13,8 +13,8 @@ export default function Details({
 }) {
   const [edit, setEdit] = useState(false);
   const [expand, setExpand] = useState(false);
-  const [value, setValue] = useState(task.name);
-  const [inputValue, setInputValue] = useState(task.name);
+  const [value, setValue] = useState(task.title);
+  const [inputValue, setInputValue] = useState(task.title);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleSave = () => {
