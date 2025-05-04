@@ -5,7 +5,7 @@ export default function Status({ status }: { status: TaskStatus }) {
   const style: Record<TaskStatus, TaskStyle> = {
     'To do': {
       background: 'background-pill',
-      border: 'border-r-blue-500/30'
+      border: 'border-r-indigo-500/15'
     },
     'Ongoing': {
       background: 'bg-yellow-200/20',
