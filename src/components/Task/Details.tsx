@@ -1,4 +1,4 @@
-import { Check, ChevronDown, ChevronUp, Pencil, Trash2 } from 'lucide-react';
+import { Check, ChevronDown, ChevronUp, Pencil, Trash2, X } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { Task, TaskStatus } from '../../lib/types';
 import { useDeleteTask, useUpdateTask } from '../../data/task';
@@ -113,10 +113,19 @@ export default function Details({
             className="text-gray-100/40 cursor-pointer" size={18}
           />
         )}
-        <Trash2
-          onClick={handleDelete}
-          className="text-gray-100/40 cursor-pointer" size={18}
-        />
+        {edit
+          ? (
+            <X
+              onClick={() => setEdit(false)}
+              className="text-gray-100/40 cursor-pointer" size={18}
+            />
+          )
+          : (
+            <Trash2
+              onClick={handleDelete}
+              className="text-gray-100/40 cursor-pointer" size={18}
+            />
+          )}
       </div>
     </div>
   )
