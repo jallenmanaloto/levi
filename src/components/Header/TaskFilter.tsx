@@ -30,7 +30,7 @@ export default function TaskFilter() {
             key={key}
           >
             <h2 className={`${isActive ? 'text-gray-100' : ''} text-xs px-2`}>
-              {category}: <span className={`${isActive ? 'text-green-200' : 'text-green-200/20'}`}>{count}</span>
+              {category} <span className={`${isActive ? 'text-green-200' : 'text-green-200/20'}`}>({count})</span>
             </h2>
           </div>
         )
