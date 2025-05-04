@@ -1,8 +1,12 @@
 import { ChevronDown, ChevronUp, Pencil, Trash2 } from 'lucide-react';
 import { useState } from 'react';
 
-export default function Details() {
+export default function Details({ visible, setVisible }: { visible: boolean, setVisible: (visible: boolean) => void }) {
   const [expand, setExpand] = useState(false);
+  const handleExpandNotes = () => {
+    setExpand(!expand);
+    setVisible(!visible);
+  }
   return (
     <div className="h-14 w-5/6 flex-1 flex justify-between items-start background-pill rounded-r-full">
       <div className="h-full w-5/6 px-3 whitespace-nowrap">
@@ -14,7 +18,7 @@ export default function Details() {
             Created at: Jan-12-2025
           </h3>
           <div
-            onClick={() => setExpand(!expand)}
+            onClick={handleExpandNotes}
             className="flex items-center space-x-2 cursor-pointer"
           >
             <h3 className="text-xs text-gray-100/40">
