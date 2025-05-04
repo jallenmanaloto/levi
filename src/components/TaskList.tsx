@@ -13,21 +13,6 @@ export default function TaskList() {
         <Task status={TaskStatus.TODO} />
         <Task status={TaskStatus.ONGOING} />
         <Task status={TaskStatus.DONE} />
-        <Task status={TaskStatus.TODO} />
-        <Task status={TaskStatus.ONGOING} />
-        <Task status={TaskStatus.DONE} />
-        <Task status={TaskStatus.TODO} />
-        <Task status={TaskStatus.ONGOING} />
-        <Task status={TaskStatus.DONE} />
-        <Task status={TaskStatus.TODO} />
-        <Task status={TaskStatus.ONGOING} />
-        <Task status={TaskStatus.DONE} />
-        <Task status={TaskStatus.TODO} />
-        <Task status={TaskStatus.ONGOING} />
-        <Task status={TaskStatus.DONE} />
-        <Task status={TaskStatus.TODO} />
-        <Task status={TaskStatus.ONGOING} />
-        <Task status={TaskStatus.DONE} />
       </div>
 
       <div className="w-full py-6">
