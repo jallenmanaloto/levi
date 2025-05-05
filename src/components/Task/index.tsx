@@ -14,7 +14,7 @@ export default function Task({ task }: { task: TTask }) {
         <Status status={task.status} />
         <Details visible={visible} setVisible={setVisible} task={task} />
       </div>
-      {visible ? <Notes /> : null}
+      {visible ? <Notes task={task} /> : null}
     </>
   )
 }
