@@ -87,7 +87,7 @@ export default function Details({
           : (
             <>
               <h2 className="text-base text-gray-100/80 pt-2 truncate">
-                {value}
+                {task.title}
               </h2>
             </>
           )}
