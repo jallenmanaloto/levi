@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { useFilterStore, useTaskStore } from "../../lib/store";
+import { useFilterStore, useNoteVisibilityStore, useTaskStore } from "../../lib/store";
 import { TaskStatus } from "../../lib/types";
 
 export default function TaskFilter() {
   const { tasks, setFilteredTasks } = useTaskStore();
+  const { collapseAllNotes } = useNoteVisibilityStore();
   const categories = ['Tasks', 'Ongoing', 'Done'];
   const { total, ongoingCount, doneCount } = useFilterStore();
   const [activeCategory, setActiveCategory] = useState<string>('Tasks');
@@ -14,6 +15,11 @@ export default function TaskFilter() {
     Ongoing: TaskStatus.ONGOING,
     Done: TaskStatus.DONE,
   };
+
+  const handleCategoryChange = (category: string) => {
+    collapseAllNotes();
+    setActiveCategory(category);
+  }
 
   useEffect(() => {
     if (!tasks) return undefined;
@@ -44,7 +50,7 @@ export default function TaskFilter() {
         const isActive = activeCategory === category;
         return (
           <div
-            onClick={() => setActiveCategory(category)}
+            onClick={() => handleCategoryChange(category)}
             className={`w-28 h-7 ml-4 base-text flex justify-center items-center ${isActive ? 'bg-neutral-200/10' : 'bg-stone-800/40'} rounded-full cursor-pointer`}
             key={key}
           >
