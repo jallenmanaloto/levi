@@ -23,6 +23,11 @@ export default function Details({
 
   const updateTask = useUpdateTask();
   const handleSave = () => {
+    if (inputValue === value) {
+      setEdit(false);
+      return;
+    }
+
     if (inputValue.trim()) {
       updateTask.mutate({
         id: task.id,
@@ -46,6 +51,17 @@ export default function Details({
     setVisible(!visible);
   }
 
+  const handleOnKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      handleSave();
+    }
+
+    if (event.key === 'Escape') {
+      setEdit(false);
+      setInputValue(task.title);
+    }
+  }
+
   useEffect(() => {
     if (edit && inputRef.current) {
       inputRef.current.focus();
@@ -65,16 +81,7 @@ export default function Details({
               className="outline-none text-base text-gray-100/40 bg-stone-800/40 w-full pt-2 mt-1"
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
-              onKeyDown={(event) => {
-                if (event.key === 'Enter') {
-                  handleSave();
-                }
-
-                if (event.key === 'Escape') {
-                  setEdit(false);
-                  setInputValue(task.title);
-                }
-              }}
+              onKeyDown={(event) => handleOnKeyDown(event)}
             />
           )
           : (
@@ -112,7 +119,7 @@ export default function Details({
         {edit ? (
           <Check
             onClick={handleSave}
-            className="text-gray-100/40 cursor-pointer" size={18}
+            className="text-green-300/50 cursor-pointer" size={18}
           />
         ) : (
 
