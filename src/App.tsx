@@ -5,7 +5,7 @@ import { Toaster } from "sonner";
 function App() {
   return (
     <main className="w-screen h-screen background-main-dark">
-      <Toaster richColors position="top-center" />
+      <Toaster richColors position="bottom-center" closeButton />
       <Main />
     </main>
   );
