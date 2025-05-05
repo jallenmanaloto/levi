@@ -23,7 +23,7 @@ export default function Note({ note }: { note: string }) {
   }, [edit])
 
   return (
-    <div className="flex justify-between items-start w-5/6 background-pill">
+    <div className="flex justify-between items-start w-5/6 background-pill select-none">
       <div className="flex items-center w-5/6">
         <SquareDot className="h-4 w-4 text-gray-100/40 m-2" />
         {edit
@@ -50,7 +50,7 @@ export default function Note({ note }: { note: string }) {
             <>
               <Check
                 onClick={handleSave}
-                className="text-gray-100/40 cursor-pointer h-4 w-4 cursor-pointer"
+                className="text-green-300/50 cursor-pointer h-4 w-4 cursor-pointer"
               />
               <X
                 onClick={() => setEdit(false)}
