@@ -1,6 +1,8 @@
 export type Note = {
-  name: string;
-  createdAt: string;
+  id: number;
+  note: string;
+  taskId: number;
+  timestamp: string;
 };
 
 export type Task = {
