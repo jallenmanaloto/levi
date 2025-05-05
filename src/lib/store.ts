@@ -34,4 +34,29 @@ export const useTaskStore = create<TaskStore>((set) => ({
   filteredTasks: undefined,
   setFilteredTasks: (filteredTasks: Task[] | undefined) => set(() => ({ filteredTasks })),
   setTasks: (tasks: Task[] | undefined) => set(() => ({ tasks })),
-}))
+}));
+
+export type NoteVisibilityState = {
+  visibleNotes: Record<number, boolean>;
+  setNoteVisibility: (taskId: number, isVisible: boolean) => void;
+  isNoteVisible: (taskId: number) => boolean;
+  collapseAllNotes: () => void;
+}
+
+export const useNoteVisibilityStore = create<NoteVisibilityState>((set, get) => ({
+  visibleNotes: {},
+
+  setNoteVisibility: (taskId: number, isVisible: boolean) =>
+    set((state) => ({
+      visibleNotes: {
+        ...state.visibleNotes,
+        [taskId]: isVisible
+      }
+    })),
+
+  isNoteVisible: (taskId: number) => {
+    return get().visibleNotes[taskId] || false;
+  },
+
+  collapseAllNotes: () => set({ visibleNotes: {} })
+}));
