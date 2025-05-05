@@ -1,5 +1,6 @@
 import { Check, Pencil, SquareDot, Trash2, X } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
+
 export default function Note({ note }: { note: string }) {
   const [edit, setEdit] = useState(false);
   const [value, setValue] = useState(note);

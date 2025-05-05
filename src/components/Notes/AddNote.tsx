@@ -1,20 +1,26 @@
 import { useEffect, useRef, useState } from 'react';
 import { CircleChevronRight, Plus, X } from 'lucide-react';
 import { toast } from 'sonner';
+import { useAddNote } from '../../data/note';
 
-export default function AddNote() {
+export default function AddNote({ taskId }: { taskId: number }) {
   const [addNote, setAddNote] = useState(false);
   const [note, setNote] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
 
+  const handleNoteChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setNote(event.target.value);
+  };
+
+  const addNoteMutation = useAddNote();
   const handleAddNoteSubmit = async () => {
-    // if (taskTitle.trim()) {
-    //   addTaskMutation.mutate({ title: taskTitle, status: taskStatus });
-    //   setNote('');
-    //   setAddNote(false);
-    // } else {
-    //   toast.error('Failed to add note. Description cannot be empty.');
-    // }
+    if (note.trim()) {
+      addNoteMutation.mutate({ note, taskId });
+      setNote('');
+      setAddNote(false);
+    } else {
+      toast.error('Failed to add note. Description cannot be empty.');
+    }
   };
 
   useEffect(() => {
@@ -39,8 +45,19 @@ export default function AddNote() {
               type='text'
               placeholder='Note'
               className="text-sm w-5/6 text-gray-100/30 flex-1 outline-none"
+              onChange={handleNoteChange}
+              onKeyDown={(event) => {
+                if (event.key === 'Enter') {
+                  handleAddNoteSubmit();
+                }
+
+                if (event.key === 'Escape') {
+                  setAddNote(false);
+                }
+              }}
             />
             <CircleChevronRight
+              onClick={handleAddNoteSubmit}
               className="text-green-200 h-5 w-6 mr-3 cursor-pointer"
             />
           </div>
