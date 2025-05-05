@@ -18,7 +18,7 @@ export const deletTask = async ({ id }: { id: number }): Promise<void> => {
 }
 
 export const addNote = async ({ note, taskId }: { note: string, taskId: number }): Promise<void> => {
-  return await invoke('add_note_command', { note, taskId: taskId });
+  return await invoke('add_note_command', { note, taskId });
 }
 
 export const fetchNotes = async ({ taskId }: { taskId: number }): Promise<Note[]> => {
