@@ -1,6 +1,8 @@
 mod db;
 
-use crate::db::{add_task, delete_task, get_tasks, init_db, update_task, Task};
+use crate::db::{
+    add_note, add_task, delete_task, get_notes, get_tasks, init_db, update_task, Note, Task,
+};
 use rusqlite::Result;
 // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
 #[tauri::command]
@@ -16,7 +18,9 @@ pub fn run() {
             add_task_command,
             update_task_command,
             get_tasks_command,
-            delete_task_command
+            delete_task_command,
+            add_note_command,
+            get_notes_command
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
@@ -47,4 +51,17 @@ fn delete_task_command(id: i32) -> Result<(), String> {
     let conn = init_db().map_err(|e| e.to_string())?;
     delete_task(&conn, id).map_err(|e| e.to_string())?;
     Ok(())
+}
+
+#[tauri::command]
+fn add_note_command(note: String, task_id: i32) -> Result<(), String> {
+    let conn = init_db().map_err(|e| e.to_string())?;
+    add_note(&conn, &note, task_id).map_err(|e| e.to_string())?;
+    Ok(())
+}
+
+#[tauri::command]
+fn get_notes_command(task_id: i32) -> Result<Vec<Note>, String> {
+    let conn = init_db().map_err(|e| e.to_string())?;
+    get_notes(&conn, task_id).map_err(|e| e.to_string())
 }

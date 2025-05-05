@@ -11,6 +11,14 @@ pub struct Task {
     pub created_at: String,
 }
 
+#[derive(Debug, Serialize, Deserialize)]
+pub struct Note {
+    pub id: i32,
+    pub note: String,
+    pub task_id: i32,
+    pub timestamp: String,
+}
+
 pub fn get_db_path() -> PathBuf {
     dirs::data_local_dir()
         .unwrap_or_else(|| PathBuf::from("."))
@@ -81,4 +89,30 @@ pub fn update_task(conn: &Connection, id: i32, new_title: &str, new_status: &str
 pub fn delete_task(conn: &Connection, id: i32) -> Result<()> {
     conn.execute("DELETE FROM tasks WHERE id = ?1", &[&id.to_string()])?;
     Ok(())
+}
+
+pub fn add_note(conn: &Connection, note: &str, task_id: i32) -> Result<()> {
+    let now = Utc::now().to_rfc3339();
+
+    conn.execute(
+        "INSERT INTO task_notes (task_id, note, timestamp) VALUES (?1, ?2, ?3)",
+        [task_id.to_string(), note.to_owned(), now],
+    )?;
+    Ok(())
+}
+
+pub fn get_notes(conn: &Connection, task_id: i32) -> Result<Vec<Note>> {
+    let mut statement =
+        conn.prepare("SELECT id, note, task_id, timestamp FROM task_notes WHERE task_id = ?1")?;
+    let tasks = statement
+        .query_map([task_id], |row| {
+            Ok(Note {
+                id: row.get(0)?,
+                note: row.get(1)?,
+                task_id: row.get(2)?,
+                timestamp: row.get(3)?,
+            })
+        })?
+        .collect::<Result<Vec<Note>>>()?;
+    Ok(tasks)
 }
