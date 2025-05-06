@@ -9,7 +9,7 @@ export default function Notes({ task }: { task: Task }) {
     <div className="flex flex-col items-center py-1 space-y-2">
       {notes ? notes.map(note => {
         return (
-          <Note key={note.id} note={note.note} />
+          <Note key={note.id} id={note.id} note={note.note} />
         )
       }) : null}
       <AddNote taskId={task.id} />
