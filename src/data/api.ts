@@ -24,3 +24,11 @@ export const addNote = async ({ note, taskId }: { note: string, taskId: number }
 export const fetchNotes = async ({ taskId }: { taskId: number }): Promise<Note[]> => {
   return await invoke<Note[]>('get_notes_command', { taskId });
 }
+
+export const updateNote = async ({ note, id }: { note: string, id: number }): Promise<void> => {
+  return await invoke('update_note_command', { note, id });
+}
+
+export const deleteNote = async ({ id }: { id: number }): Promise<void> => {
+  return await invoke('delete_note_command', { id });
+}
