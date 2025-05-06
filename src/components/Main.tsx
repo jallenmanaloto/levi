@@ -6,6 +6,7 @@ import Header from "../components/Header";
 import TaskList from "./TaskList";
 import { useAddTask } from '../data/task';
 import { TaskStatus } from '../lib/types';
+import Footer from './Footer';
 
 export default function Main() {
   const [addTask, setAddTask] = useState(false);
@@ -37,7 +38,7 @@ export default function Main() {
   }, [addTask]);
 
   return (
-    <div className="container flex flex-col h-screen p-2 background-main-dark">
+    <div className="container relative flex flex-col h-screen p-2 background-main-dark">
       <Header />
       <div className="flex-1 py-4 px-3 pt-12 space-y-4 overflow-y-auto">
         {/* List of tasks */}
@@ -82,7 +83,8 @@ export default function Main() {
               setAddTask(true)
               setTaskTitle('');
             }}
-            className="flex items-center space-x-2 h-12 px-2 text-center cursor-pointer w-32 background-pill rounded-full transition-all duration-300 ease-in-out opacity-100 scale-100"
+            className="flex items-center space-x-2 h-12 px-2 text-center cursor-pointer
+              w-32 background-pill rounded-full transition-all duration-300 ease-in-out opacity-100 scale-100"
           >
             <div className="flex justify-center items-center w-8 h-8 bg-green-300/50 rounded-full">
               <Plus className="text-gray-100 h-6 w-6" />
@@ -92,6 +94,7 @@ export default function Main() {
             </h2>
           </div>
         )}
+        <Footer />
       </div>
     </div>
   )
