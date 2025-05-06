@@ -116,3 +116,16 @@ pub fn get_notes(conn: &Connection, task_id: i32) -> Result<Vec<Note>> {
         .collect::<Result<Vec<Note>>>()?;
     Ok(tasks)
 }
+
+pub fn update_note(conn: &Connection, id: i32, note: &str) -> Result<()> {
+    conn.execute(
+        "UPDATE task_notes SET note = ?1 WHERE ID = ?2",
+        &[note, &id.to_string()],
+    )?;
+    Ok(())
+}
+
+pub fn delete_note(conn: &Connection, id: i32) -> Result<()> {
+    conn.execute("DELETE FROM task_notes WHERE id = ?1", [&id.to_string()])?;
+    Ok(())
+}
