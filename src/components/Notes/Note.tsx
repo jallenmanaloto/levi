@@ -1,7 +1,9 @@
 import { Check, Pencil, SquareDot, Trash2, X } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
+import { useDeleteNote, useUpdateNote } from '../../data/note';
+import { toast } from 'sonner';
 
-export default function Note({ note }: { note: string }) {
+export default function Note({ id, note }: { id: number, note: string }) {
   const [edit, setEdit] = useState(false);
   const [value, setValue] = useState(note);
   const [inputValue, setInputValue] = useState(note);
@@ -12,9 +14,39 @@ export default function Note({ note }: { note: string }) {
     setEdit(true);
   }
 
+  const updateNote = useUpdateNote();
   const handleSave = () => {
-    setValue(inputValue);
-    setEdit(false);
+    if (value === inputValue) {
+      setEdit(false);
+      return
+    }
+
+    if (inputValue.trim()) {
+      updateNote.mutate({
+        id: id,
+        note: inputValue
+      });
+      setValue(inputValue);
+      setEdit(false);
+    } else {
+      toast.error("Failed to update task. Title cannot be empty.");
+    }
+  }
+
+  const deleteNote = useDeleteNote();
+  const handleDelete = () => {
+    deleteNote.mutate({ id });
+  }
+
+  const handleOnKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      handleSave();
+    }
+
+    if (event.key === 'Escape') {
+      setEdit(false);
+      setInputValue(note);
+    }
   }
 
   useEffect(() => {
@@ -35,6 +67,7 @@ export default function Note({ note }: { note: string }) {
               className="outline-none text-xs text-gray-100/40 bg-stone-800/40 w-full"
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
+              onKeyDown={handleOnKeyDown}
             />
           )
           : (
@@ -61,7 +94,7 @@ export default function Note({ note }: { note: string }) {
           ) : (
             <>
               <Pencil onClick={handleEditToggle} className="text-gray-100/40 cursor-pointer h-4 w-4 cursor-pointer" />
-              <Trash2 className="text-gray-100/40 cursor-pointer h-4 w-4 cursor-pointer" />
+              <Trash2 onClick={handleDelete} className="text-gray-100/40 cursor-pointer h-4 w-4 cursor-pointer" />
             </>
           )}
       </div>
