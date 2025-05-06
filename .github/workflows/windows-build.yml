@@ -1,0 +1,55 @@
+name: Build Tauri Windows Installer
+
+on:
+    workflow_dispatch:  # Manual trigger
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.14.0'
+      
+      - name: Install Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          profile: minimal
+          override: true
+      
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: latest
+          run_install: false
+      
+      - name: Install frontend dependencies
+        run: pnpm install
+      
+      - name: Install Tauri dependencies for Windows
+        run: |
+          if (-not (Test-Path "C:\Program Files (x86)\Windows Kits\10\bin\10.0.19041.0\x64\mt.exe")) {
+            choco install windows-sdk-10-version-2004-all
+          }
+          if (-not (Test-Path "C:\Program Files (x86)\Microsoft Visual Studio\2019") -and -not (Test-Path "C:\Program Files\Microsoft Visual Studio\2022")) {
+            choco install visualstudio2022buildtools
+          }
+          if (-not (Get-Command "rustup" -ErrorAction SilentlyContinue)) {
+            curl -sSf https://win.rustup.rs/ | powershell -c "iex ((New-Object System.Net.WebClient).DownloadString('https://win.rustup.rs'))"
+          }
+      
+      - name: Build Tauri App
+        run: pnpm tauri build
+      
+      - name: Upload Windows Installer
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-installer
+          path: src-tauri/target/release/bundle/msi/*.msi
+          if-no-files-found: error
