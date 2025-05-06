@@ -25,10 +25,19 @@
   },
   "bundle": {
     "active": true,
+    "createUpdaterArtifacts": true,
     "targets": "all",
     "icon": [
       "icons/128x128@2x.png",
       "icons/icon.ico"
     ]
+  },
+  "plugins": {
+    "updater": {
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDQwNzRBRTE0MzI3RTY5NzMKUldSemFYNHlGSzUwUUxURkxZaFNlVGNQb2pxS0hnckpmRjlraEJNNTYwYTVuQU9mTVhqdEdUcEMK",
+      "endpoints": [
+        ""
+      ]
+    }
   }
 }
