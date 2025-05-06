@@ -17,7 +17,9 @@ function App() {
         await update.downloadAndInstall((event) => {
           switch (event.event) {
             case 'Started':
-              contentLength = event.data.contentLength as number;
+              if (contentLength) {
+                contentLength = event.data.contentLength as number;
+              }
               break;
             case 'Progress':
               downloaded += event.data.chunkLength;
