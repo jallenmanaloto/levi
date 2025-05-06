@@ -5,6 +5,8 @@ use crate::db::{
     update_task, Note, Task,
 };
 use rusqlite::Result;
+use tauri::{Emitter, Manager, WebviewUrl, WebviewWindowBuilder};
+
 // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
 #[tauri::command]
 fn greet(name: &str) -> String {
@@ -24,7 +26,8 @@ pub fn run() {
             add_note_command,
             get_notes_command,
             update_note_command,
-            delete_note_command
+            delete_note_command,
+            create_voice_window
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
@@ -81,5 +84,36 @@ fn update_note_command(note: String, id: i32) -> Result<(), String> {
 fn delete_note_command(id: i32) -> Result<(), String> {
     let conn = init_db().map_err(|e| e.to_string())?;
     delete_note(&conn, id).map_err(|e| e.to_string())?;
+    Ok(())
+}
+
+#[tauri::command]
+fn create_voice_window(app_handle: tauri::AppHandle) -> Result<(), String> {
+    if let Some(existing_window) = app_handle.get_webview_window("voice") {
+        existing_window.set_focus().map_err(|e| e.to_string())?;
+        return Ok(());
+    }
+
+    let voice_window =
+        WebviewWindowBuilder::new(&app_handle, "voice", WebviewUrl::App("voice".into()))
+            .title("Voice")
+            .inner_size(300.0, 200.0)
+            .max_inner_size(300.0, 200.0)
+            .resizable(false)
+            .decorations(true)
+            .always_on_top(true)
+            .build()
+            .map_err(|e| e.to_string())?;
+
+    let app_clone = app_handle.clone();
+    voice_window.on_window_event(move |event| match &event {
+        tauri::WindowEvent::CloseRequested { api: _, .. } => {
+            if let Err(e) = app_clone.emit("voice-window-closed", {}) {
+                eprintln!("Failed to emit voice-window-closed event: {}", e);
+            }
+        }
+        _ => {}
+    });
+
     Ok(())
 }
