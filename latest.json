@@ -1,0 +1,19 @@
+{
+  "version": "0.1.0",
+  "notes": "",
+  "pub_date": "2024-08-15T14:15:22Z",
+  "platforms": {
+    "linux-x86_64": {
+      "signature": "",
+      "url": ""
+    },
+    "windows-x86_64": {
+      "signature":"dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSemFYNHlGSzUwUVBYZkN5Qk1McVNsZnhvOWdnRFhqN2lVTjZpaytEb2VLTFM2WFl0MmtCRk1XcHY4OHRJWFJkUmVhMC84MEczTjZTdkRveFdyRktzdkxpeW5KZG9SSVFFPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzQ2NTIwODM3CWZpbGU6bGV2aV8wLjEuMF94NjQtc2V0dXAuZXhlCjdyWkNHQ1N6dHBjdGxnalJ4dHBjS0YraktEKyt6eGdBdWQ2NHhpUjJVL0t2NlNvaC9QUGFxanR2T01mM0plOVRtM0o4d3YxV0l4ZUxSbVUrVHRvckFRPT0K",
+      "url": "https://github.com/jallenmanaloto/levi/releases/download/latest/levi_0.1.0_x64-setup.exe"
+    },
+    "darwin-x86_64": {
+      "signature": "",
+      "url": ""
+    }
+  }
+}
