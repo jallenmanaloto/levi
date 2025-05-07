@@ -33,6 +33,11 @@
   },
   "plugins": {
     "updater": {
+      "windows": {
+        "installMode": "passive"
+      },
+      "active": true,
+      "dialog": true,
       "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDQwNzRBRTE0MzI3RTY5NzMKUldSemFYNHlGSzUwUUxURkxZaFNlVGNQb2pxS0hnckpmRjlraEJNNTYwYTVuQU9mTVhqdEdUcEMK",
       "endpoints": [
         "https://github.com/jallenmanaloto/levi/releases/latest/download/latest.json"
