@@ -1,6 +1,5 @@
 import Find from "../Search/index.tsx";
 import TaskFilter from "./TaskFilter.tsx"
-import Voice from "./Voice.tsx";
 
 export default function Header() {
   return (
@@ -8,7 +7,9 @@ export default function Header() {
       <TaskFilter />
       <div className="flex items-center space-x-3">
         <Find />
+        {/*
         <Voice />
+        */}
       </div>
     </div>
   )
