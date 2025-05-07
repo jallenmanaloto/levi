@@ -6,7 +6,9 @@
   "permissions": [
     "core:default",
     "opener:default",
+    "core:window:allow-start-dragging",
     "updater:default",
-    "core:window:allow-start-dragging"
+    "updater:allow-check",
+    "updater:allow-download-and-install"
   ]
 }
