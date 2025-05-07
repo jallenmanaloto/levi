@@ -1,15 +1,15 @@
 {
-  "version": "0.1.0",
+  "version": "0.1.1",
   "notes": "",
-  "pub_date": "2024-08-15T14:15:22Z",
+  "pub_date": "2025-05-07T15:44:22Z",
   "platforms": {
     "linux-x86_64": {
-      "signature": "",
-      "url": ""
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSemFYNHlGSzUwUUdiZy9GNTFOa1lONUZJRjBoQlFIVUtJTENaY2h0SmJDcU9YbjlRNmxnK09jQjRwMkZoejFibXVUanVqbi9iMHpYK0l1Z25MTGRQazg1cUpqSUlVdUFRPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzQ2NjAzNTg4CWZpbGU6bGV2aV8wLjEuMF9hbWQ2NC5kZWIKcmcrME1hNllxaTdxeWoxQkQ4dFQyYmhsRjRyVXR0bEV0bjhiK0VQajNuZFVVOTZBNm1tY3doclFVMjFtdHk4aWx4V3NmeFpXOHBXZ1NkamozL2YvREE9PQo=",
+      "url": "https://github.com/jallenmanaloto/levi/releases/download/latest/levi_0.1.1_amd64.deb"
     },
     "windows-x86_64": {
       "signature":"dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSemFYNHlGSzUwUVBYZkN5Qk1McVNsZnhvOWdnRFhqN2lVTjZpaytEb2VLTFM2WFl0MmtCRk1XcHY4OHRJWFJkUmVhMC84MEczTjZTdkRveFdyRktzdkxpeW5KZG9SSVFFPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzQ2NTIwODM3CWZpbGU6bGV2aV8wLjEuMF94NjQtc2V0dXAuZXhlCjdyWkNHQ1N6dHBjdGxnalJ4dHBjS0YraktEKyt6eGdBdWQ2NHhpUjJVL0t2NlNvaC9QUGFxanR2T01mM0plOVRtM0o4d3YxV0l4ZUxSbVUrVHRvckFRPT0K",
-      "url": "https://github.com/jallenmanaloto/levi/releases/download/latest/levi_0.1.0_x64-setup.exe"
+      "url": "https://github.com/jallenmanaloto/levi/releases/download/latest/levi_0.1.1_x64-setup.exe"
     },
     "darwin-x86_64": {
       "signature": "",
