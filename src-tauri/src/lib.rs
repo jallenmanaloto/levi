@@ -98,9 +98,9 @@ fn create_voice_window(app_handle: tauri::AppHandle) -> Result<(), String> {
         WebviewWindowBuilder::new(&app_handle, "voice", WebviewUrl::App("voice".into()))
             .title("Voice")
             .inner_size(300.0, 200.0)
-            .max_inner_size(300.0, 200.0)
+            .max_inner_size(300.0, 80.0)
             .resizable(false)
-            .decorations(true)
+            .decorations(false)
             .always_on_top(true)
             .build()
             .map_err(|e| e.to_string())?;
