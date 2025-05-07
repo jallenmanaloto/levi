@@ -1,15 +1,15 @@
 {
-  "version": "0.2.0",
+  "version": "0.2.1",
   "notes": "",
-  "pub_date": "2025-05-07T16:44:22Z",
+  "pub_date": "2025-05-07T18:44:22Z",
   "platforms": {
     "linux-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSemFYNHlGSzUwUUlUd3A2OU9qNzdLTzNWVjEzT0FhZ3ZoRjlabmhCVTZzL1B1eHpRSEt0bS9icENkNHdoYjQvN3ZBbFZHMXZoMHo0ckh3Zy96YUN1NGJxbHBFMUM5b3dJPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzQ2NjA3MjQ3CWZpbGU6bGV2aV8wLjIuMF9hbWQ2NC5kZWIKaUNmcWwrZWlXaUpnUFRyYkQ1NVI5b0tHdjRUejBCcE44WVUxVS9SVFFDenEyQjJOaytMRnc4MnA5S1JxZzBjWjgxZE4rSFU2RFUvV0hGMFhoOHFoQlE9PQo=",
-      "url": "https://github.com/jallenmanaloto/levi/releases/download/latest/levi_0.2.0_amd64.deb"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSemFYNHlGSzUwUU1ZUHRjYWowRzJ6VHk2MTdwWG04TW9xbWgvcEhRd3pvL1EzbGZLcW9RYmdjQ2MzdVhNbmJwRXdTelN5VHdIRVZuUVBFREthZGlDSE0wVVE0R0JQbndRPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzQ2NjE0NjQwCWZpbGU6bGV2aV8wLjIuMV9hbWQ2NC5kZWIKOVZQWDJkaU5XYkFlRXRkWTlNTXJMcmJOQWdMcTZhdThxb24xQWd2YzZuaktNVk9BUlJHamczbzFJbnZGeW1JRUNVMk03a2lkKy9oK2JiU2pyQTJlRGc9PQo=",
+      "url": "https://github.com/jallenmanaloto/levi/releases/download/latest/levi_0.2.1_amd64.deb"
     },
     "windows-x86_64": {
-      "signature":"dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSemFYNHlGSzUwUUtZMEhnRklNOTBqemdUT1BOeVZ0K21aZjZ5TlBGcjZTUGk1VEdMWUVxak13MGlRa3RkeE9FLzFQT0twaW1WQUxHUzVjaWRSbzZXZHQyYlhUc2tRd2dNPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzQ2NjA3MzAxCWZpbGU6bGV2aV8wLjIuMF94NjQtc2V0dXAuZXhlCi9uRStYa2ZULzlzUjVnR1BwbU1UR2tzdFJKYmNmTUpld2sxK1FmMUtJU3BmeG5XUG1kMEppaEZ5RFdKc3JJQ2FJSUV3aC9qaktNa2l0bkdLY04vREFBPT0K",
-      "url": "https://github.com/jallenmanaloto/levi/releases/download/latest/levi_0.2.0_x64-setup.exe"
+      "signature":"dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSemFYNHlGSzUwUVBuR2pvKzkweWd0NkpMdDUzYU1iajZvWTlRRDNLaWFZN3l5Z25Qckd1b3h6cGlOOWFCMDUwZnhHaE1XQXB2M29id2lMbUJGd1k1Nk1LdlQxNEJjcUFBPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzQ2NjE0MTY5CWZpbGU6bGV2aV8wLjIuMV94NjQtc2V0dXAuZXhlCitDSXZrLzI1YUVEd3hqWmpNMklKRzF3anVkZVBRUzNZd0RTQWtLTFluQzBQcUhkWllJU3BNU1RHNHpYRVpZK2pDM1lqSXVMUEd6YmdoelNpbmlBakFnPT0K",
+      "url": "https://github.com/jallenmanaloto/levi/releases/download/latest/levi_0.2.1_x64-setup.exe"
     },
     "darwin-x86_64": {
       "signature": "",
