@@ -34,7 +34,6 @@ function App() {
     }
 
     checkForUpdate();
-
   }, [])
   return (
     <main className="w-screen h-screen background-main-dark">
