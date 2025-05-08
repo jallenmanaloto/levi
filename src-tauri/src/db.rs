@@ -1,3 +1,4 @@
+use crate::logger::{init_logger, log_to_file, LOG_FILE};
 use chrono::Utc;
 use rusqlite::{Connection, Result};
 use serde::{Deserialize, Serialize};
@@ -20,10 +21,23 @@ pub struct Note {
 }
 
 pub fn get_db_path() -> PathBuf {
-    dirs::data_local_dir()
-        .unwrap_or_else(|| PathBuf::from("."))
-        .join("levi")
-        .join("app.db")
+    if LOG_FILE.lock().unwrap().is_none() {
+        if let Err(e) = init_logger() {
+            eprintln!("Logger initialization failed: {}", e);
+        }
+    }
+
+    let base_path = match dirs::data_local_dir() {
+        Some(dir) => dir,
+        None => {
+            let _ = log_to_file(
+                "Could not determine local data directory. Using the current directory.",
+            );
+            PathBuf::from(".")
+        }
+    };
+
+    base_path.join("levi").join("app.db")
 }
 
 pub fn init_db() -> Result<Connection> {
