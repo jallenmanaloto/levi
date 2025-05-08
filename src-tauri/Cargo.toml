@@ -1,7 +1,7 @@
 [package]
 name = "levi"
-version = "0.2.1"
-description = "A Tauri App"
+version = "0.2.2"
+description = "A local task manager"
 authors = ["you"]
 edition = "2021"
 
